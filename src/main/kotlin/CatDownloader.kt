@@ -24,6 +24,10 @@ fun downloadCat  (   onSuccess: () -> Unit  ) {       // загружает фо
 */
 
 class CatDownloader {
+    fun downloadCat(onSuccess: (Cat) -> Unit, onError: (String) -> Unit) {
+
+    }
+
     class CatDownloader {
 
         fun downloadCat(
