@@ -1,3 +1,5 @@
+import kotlin.collections.Map
+
 //class ForEach { }
 
 fun main(){
@@ -14,15 +16,15 @@ fun main(){
     stringsSet.forEachIndexed { index, element -> println("'$element' находится на позиции $index") }
 
     println("ForEach для Map<IntString>")
-    val map: Map<Int, String> = mapOf(
+    val mapExemple: Map<Int, String> = mapOf(
         1 to "Один",
         2 to "Два",
         3 to "Три"
     )
 
     // для Map метод forEach в параметрах имеет объект класса Entry, который содержит ключ и значение
-    map.forEach { entry -> println(entry) }
+    mapExemple.forEach { entry -> println(entry) }
     // а можно получить набор ключей, используя свойство keys, которое возвращает Set<T>
-    map.keys.forEach { key -> println("Элемент ${map[key]} имеет ключ $key") }
+    mapExemple.keys.forEach { key -> println("Элемент ${mapExemple[key]} имеет ключ $key") }
     // для Map нет метода forEachIndexed(), потому что нет индексов
 }

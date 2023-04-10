@@ -1,12 +1,13 @@
 
+import kotlin.collections.Map
 import kotlin.random.Random
 
-class Card1 (val numbers :  Map<Int, Set<Int>>) {
+class Card1(val numbers: Map<Int, MutableSet<Int>>) {
 
 }
 
 class Person1 (val name : String){
-     val card : Card1 = createCard()
+     val card1 : Card1 = createCard()
 
      private fun createCard(): Card1 {
              var numbersSet15 = mutableSetOf<Int>()
@@ -53,9 +54,9 @@ class Person1 (val name : String){
 //... // числа в карточки должны быть от 1 до 99 включительно. Для генерации чисел можно использовать функцию Random.nextInt()
  */
 fun main() {
-    val player = Person ("Arcadii")
-    println (player.card.numbers[1])
-    println (player.card.numbers[2])
-    println (player.card.numbers[3])
+    val player = Person1 ("Arcadii")
+//    println (player.card1.numbers[1])
+//    println (player.card1.numbers[2])
+//    println (player.card1.numbers[3])
 }
 

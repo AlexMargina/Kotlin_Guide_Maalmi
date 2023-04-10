@@ -29,7 +29,7 @@ import kotlin.random.Random
     }
 //}
 
-class Card(val numbers: Map<Int, MutableSet<Int>>)
+class Card(val numbers: MutableMap<Int, MutableSet<Int>>)
 
 class Person(val name: String) {
 

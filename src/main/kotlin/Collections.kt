@@ -1,3 +1,4 @@
+import kotlin.collections.*
 class Collections {
 }
 /*Создание коллекций
@@ -15,15 +16,12 @@ val mutableList: MutableList<String> = mutableListOf("Олег", "Алёна", "
 val emptyMutableList: MutableList<String> = mutableListOf()
 
 // мы можем быстро создать Map, используя функцию mapOf(), в которую мы можем передать набор ключей и значений
-val immutableMap: Map<String, String> = mapOf(
-    "Ключ #1" to "Значение #1",
-    "Ключ #2" to "Значение #2",
-)
-val emptyImmutableMap: Map<String, String> = mapOf()
-val anotherEmptyImmutableMap: Map<String, String> = emptyMap()
+val immutableMapExemple:  MutableMap<String, String> = mutableMapOf( "Ключ #1" to "Значение #1",  "Ключ #2" to "Значение #2")
+val emptyImmutableMap:  MutableMap<String, String> = mutableMapOf() // пришлось добавить Mutable, иначе ошибка!
+//val anotherEmptyImmutableMap: Map<String?, String?> = emptyMap()
 
 // для изменяемых коллекций есть аналогичная функция mutableMapOf
-val mutableMap: MutableMap<String, String> = mutableMapOf(
+val mutableMapExemple: MutableMap<String, String> = mutableMapOf(
     "Ключ #1" to "Значение #1",
     "Ключ #2" to "Значение #2",
 )

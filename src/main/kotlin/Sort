@@ -1,0 +1,86 @@
+/*
+Функции sort
+Переходим к сортировкам. В Kotlin есть функции sortedBy() и sortedByDescending(), позволяющие указать, по какому параметру мы хотим отсортировать элементы в коллекции.
+Функция sortedBy() сортирует по-возрастанию, а sortedByDescending() в обратном порядке. */
+
+fun main(){
+    data class Person(val name: String, val age: Int)
+
+    val persons: List<Person> = listOf(
+        Person("Катя", 17),
+        Person("Ольга", 21),
+        Person("Кирилл", 21),
+        Person("Андрей", 15)
+    )
+
+    // сортируем коллекцию по имени
+    var sortedByName: List<Person> = persons.sortedBy { person -> person.name }
+    println(sortedByName)
+
+    // сортируем коллекцию по возрасту в обратном порядке
+    val sortedByAge: List<Person> = persons.sortedByDescending { person -> person.age }
+    println(sortedByAge)
+}
+
+Часто нам могут требоваться более сложные условия сортировки. Тогда мы можем использовать функцию sortedWith(), которая принимает на вход объект компаратора.
+Запустите сниппет и посмотрите, как работает функция sortedWith().
+Код
+
+data class Person(val name: String, val age: Int)
+
+val persons: List<Person> = listOf(
+   Person("Катя", 17),
+    Person("Ольга", 21),
+    Person("Кирилл", 21),
+    Person("Андрей", 15)
+)
+
+// сортируем по возрасту, если возраст одинаков, то сортируем по имени
+val sortedByAgeAndName: List<Person> = persons.sortedWith(object : Comparator<Person> {
+    override fun compare(p0: Person, p1: Person): Int {
+        val ageResult = p0.age.compareTo(p1.age)
+        return if (ageResult != 0) ageResult else p0.name.compareTo(p1.name)
+    }
+})
+
+// эта функция абсолютно эквивалентна верхней, но использует лямбда-выражение
+val sortedByAgeAndNameWithLambda: List<Person> = persons.sortedWith { p0, p1 ->
+    val ageResult = p0.age.compareTo(p1.age)
+    if (ageResult != 0) ageResult else p0.name.compareTo(p1.name)
+}
+
+fun main(){
+    println(sortedByAgeAndName)
+    println(sortedByAgeAndNameWithLambda)
+}
+
+Результат
+[Person(name=Андрей, age=15), Person(name=Катя, age=17), Person(name=Кирилл, age=21), Person(name=Ольга, age=21)]
+[Person(name=Андрей, age=15), Person(name=Катя, age=17), Person(name=Кирилл, age=21), Person(name=Ольга, age=21)]
+
+
+Хотя условие сравнения понятное, код выше получился не очень наглядным. К счастью в Kotlin есть метод compareBy(), с помощью которого мы можем создать
+объект Comparable. В качестве аргументов метод принимает переменное количество правил сортировки, которые будут вызываться друг за другом.
+Запустите сниппет и посмотрите, как работает метод compareBy().
+
+data class Person(val name: String, val age: Int)
+
+val persons: List<Person> = listOf(
+    Person("Катя", 17),
+    Person("Ольга", 21),
+    Person("Кирилл", 21),
+    Person("Андрей", 15)
+)
+// как и в прошлый раз, сортируем по возрасту
+// если возраст одинаков, то сортируем по имени
+val sortedByAgeAndName = persons.sortedWith( compareBy({it.age}, {it.name}) )
+
+fun main(){
+    println(sortedByAgeAndName)
+}
+
+Результат
+[Person(name=Андрей, age=15), Person(name=Катя, age=17), Person(name=Кирилл, age=21), Person(name=Ольга, age=21)]
+
+Функции sortedBy(), sortedByDescending() и sortedWith() возвращают новые коллекции.
+А если мы не хотим создавать новую коллекцию, а отсортировать имеющуюся, для этого в Kotlin есть функции sortBy(), sortByDescending() и sortWith().

@@ -17,16 +17,16 @@ import kotlin.random.Random
 
 class Lotto2 {
 
-    val persons  = mutableSetOf<Person>()// определите поле, в котром будут храниться добавленные игроки `Person`
+    val persons2  = mutableSetOf<Person2>()// определите поле, в котром будут храниться добавленные игроки `Person`
     val thrownNumbers = mutableSetOf<Int>() // поле thrownNumbers должно хранить в себе набор выброшенных чисел.
     val wins = mutableListOf<String>()
 
-    fun addPerson(person: Person) {
-        persons.add (person) // добавить игрока в список игроков
+    fun addPerson(person2: Person2) {
+        persons2.add (person2) // добавить игрока в список игроков
     }
 
     fun start() {
-        if ( persons.size<2) {  // вывести сообщение и завершить работу, если количество добавленных игроков меньше 2
+        if ( persons2.size<2) {  // вывести сообщение и завершить работу, если количество добавленных игроков меньше 2
             println("Перед началом игры необходимо добавить хотя бы двух игроков")
             return
         }
@@ -36,26 +36,28 @@ class Lotto2 {
             var randomNumber = Random.nextInt(1, 99) // достать номер. Номер может быть в диапазоне от 1 до 99 включительно
             if (thrownNumbers.add(randomNumber) == true) {// после каждого выброшенного числа удалять это число из карточек всех игроков, если такое число имеется
 
-                    for (person in persons) {
-                        person.card.numbers[1]?.remove(randomNumber)
-                        person.card.numbers[2]?.remove(randomNumber)
-                        person.card.numbers[3]?.remove(randomNumber)
-                        if (person.card.numbers[1].isNullOrEmpty()) wins.add(person.name) // побеждает тот, у кого в одном из рядов нет больше чисел. Победителей может быть более одного
-                        if (person.card.numbers[2].isNullOrEmpty()) wins.add(person.name)
-                        if (person.card.numbers[3].isNullOrEmpty()) wins.add(person.name)
-                    }
+                for (personEach in persons2) {
+                    personEach.card2.numbers[1]?.remove(randomNumber)
+                    personEach.card2.numbers[2]?.remove(randomNumber)
+                    personEach.card2.numbers[3]?.remove(randomNumber)
+                    if (personEach.card2.numbers[1].isNullOrEmpty()) wins.add(personEach.name) // побеждает тот, у кого в одном из рядов нет больше чисел. Победителей может быть более одного
+                    if (personEach.card2.numbers[2].isNullOrEmpty()) wins.add(personEach.name)
+                    if (personEach.card2.numbers[3].isNullOrEmpty()) wins.add(personEach.name)
                 }
             }
+        }
         if (wins.size>=1) println("Победитель: ${wins[0]}!!!")    // после того как появляется победитель, для каждого победителя вывести текст "Победитель: [имя_победителя]!!!"
 
     }
 }
 
-class Card2(val numbers: Map<Int, MutableSet<Int>>)
+
+
+class Card2(val numbers: MutableMap<Int, MutableSet<Int>>)
 
 class Person2(val name: String) {
 
-    val card: Card2 = createCard()
+    val card2: Card2 = createCard()
 
     private fun createCard(): Card2 {
         val numbers: Set<Int> = generateNumbers()
