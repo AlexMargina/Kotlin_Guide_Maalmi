@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-import kotlin.random.Random
-
 /*
 Попробуем улучшить наш «Загрузчик Котиков».
 Сделаем программу более разговорчивой.
@@ -12,6 +8,7 @@ import kotlin.random.Random
 При значении переменной равной true, программа должна работать как раньше.
 */
 
+import kotlin.random.Random
 
 fun main() {
     val catDownloader = CatDownloader()
@@ -31,7 +28,7 @@ class CatDownloader {
         onSuccess: (CatV1) -> Unit,
         onError: (String) -> Unit,
         onStart: () -> Unit,
-        allowErrors : Boolean
+        allowErrors: Boolean
     ) {
         onStart.run { (println("Загрузчик Котиков начинает работу")) }
         var cat: CatV1? = getCatFromInternet()
@@ -54,12 +51,16 @@ class CatDownloader {
     private fun getCatFromInternet(): CatV1? {
         return if (Random.nextBoolean()) CatV1("Борис") else null
     }
+
+
+    class CatV1 {
+        val name: String
+
+        constructor(name: String) {
+            this.name = name
+        }
+    }
 }
-
-class CatV1(val name: String)
-
-=======
-import kotlin.random.Random
 
 
 /*
@@ -84,7 +85,7 @@ fun downloadCat  (   onSuccess: () -> Unit  ) {       // загружает фо
 
 */
 
-class CatDownloader {
+/*class CatDownloader {
     fun downloadCat(onSuccess: (Cat) -> Unit, onError: (String) -> Unit) {
 
     }
@@ -140,4 +141,4 @@ private fun doOnSuccess(): (Cat) -> Unit = { cat -> println("Кот ${cat.name} 
 
 // Kotlin сам определит тип возвращаемой функции, но в этом случае внутри лямбда выражения необходимо явно указать тип аргументов "error: String"
 private fun doOnError() = { error: String -> println(error) }
->>>>>>> origin/master
+>>>>>>> origin/master*/
