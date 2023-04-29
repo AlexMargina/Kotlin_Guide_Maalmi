@@ -17,18 +17,14 @@ fun main() {
 
     // оставляем только те элементы, которые являются объектами класса Int (в том числе null) или число с индексом 1
     val filterIndexed: List<Number?> = numbers.filterIndexed { index, number -> number is Int? || index == 1 }
+    println(filterIndexed)
 
     // исключаем все null из коллекции
     val withoutNulls: List<Number> = numbers.filterNotNull()
+    println(withoutNulls)
 
     // оставляем только значения типа Int (без null)
     val onlyInts: List<Int> = numbers.filterIsInstance<Int>()
-
-    println(filterIndexed)
-    println(withoutNulls)
     println(onlyInts)
-
-
-
 }
 
